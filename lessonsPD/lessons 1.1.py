@@ -88,16 +88,15 @@ def max_number(text):                   # Выбор наибольшего чи
         max_number(text)
 
 
-def my_firm(text):                          # Прибыль и убытки
-    print(text)
-    input_message = ['Введите значение выручки: ', 'Введите значение издержек: ', 'Сколько у Вас сотрудников?: ']
-    if status_input_function(input_message[0]) == 0:
+def my_firm(list_message):                          # Прибыль и убытки
+    print(list_message[0])
+    if status_input_function(list_message[1]) == 0:
         revenue = int(user_value['var_number'])
-        if status_input_function(input_message[1]) == 0:
+        if status_input_function(list_message[2]) == 0:
             costs = int(user_value['var_number'])
             if revenue > costs:
                 print('Вы в прибыли! Вы заработали: ', revenue-costs)
-                status_input_function(input_message[2])
+                status_input_function(list_message[3])
                 people = int(user_value['var_number'])
                 print('Рентабельность на одного человека персонала составляет: {:.2f}'.format((revenue-costs) / people))
             elif revenue == costs:
@@ -105,17 +104,16 @@ def my_firm(text):                          # Прибыль и убытки
             else:
                 print('Вы в убытках. Вы потеряли: ', revenue-costs)
         else:
-            my_firm(text)
+            my_firm(list_message)
     else:
-        my_firm(text)
+        my_firm(list_message)
 
 
-def runner(text):               # Бегун
-    print(text)
-    input_message = ['Сколько бегун пробегает каждый день?: ', 'Сколько должен пробежать?: ']
-    if status_input_function(input_message[0]) == 0:
+def runner(list_message):               # Бегун
+    print(list_message[0])
+    if status_input_function(list_message[1]) == 0:
         a = int(user_value['var_number'])
-        if status_input_function(input_message[1]) == 0:
+        if status_input_function(list_message[2]) == 0:
             b = int(user_value['var_number'])
             count_day = 0
             while a < b:
@@ -124,9 +122,9 @@ def runner(text):               # Бегун
                 print('{}-й день: {:.2f}'.format(count_day, a))
             print('Ответ: на {}-й день спортсмен достиг результата — не менее {:.2f} км'.format(count_day, b))
         else:
-            runner(text)
+            runner(list_message)
     else:
-        runner(text)
+        runner(list_message)
 
 
 def main():
@@ -135,9 +133,10 @@ def main():
                      "Задание 3. Введите количество секунд, которое необходимо преобразовать "
                      "в данные времени. Целое число\n",
                      "Задание 4. Ввести большое целое число и получить цифру, наибольшую из введенных\n",
-                     "Задание 5. Ввести значения прибыли и издержек, чтобы получить баланс\n",
-                     "Задание 6. Введите значения: сколько пробегает бегун каждый день? "
-                     "Должен пробежать не менее скольки километров?\n"]
+                     ["Задание 5. Ввести значения прибыли и издержек, чтобы получить баланс\n",
+                      'Прибыль составила: \n', 'Идержки составили: \n', 'Сколько у вас сотрудников?\n'],
+                     ["Задание 6. Введите значения: сколько пробегает бегун каждый день? "
+                      "Должен пробежать не менее скольки километров?\n", 'Сколько пробегает?\n', 'Нужно бегать?\n']]
     status_input_function(input_message[0])
     status_input_function(input_message[1])
     sec_to_time(input_message[2])
