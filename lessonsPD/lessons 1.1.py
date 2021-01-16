@@ -21,12 +21,12 @@
 user_value = {'var_number': '0', 'var_text': ''}
 
 
-def status_input_function():    # Проверка введенного значения. Целое, с точкой, текст, внесение в словарь.
-    user_input = input()
+def status_input_function(text):    # Проверка введенного значения. Целое, с точкой, текст, внесение в словарь.
+    user_input = input(text)
     if user_input.isnumeric():                              # Если введено целое число
         status_input = 0                                    # Определяем стату как 0
         user_value['var_number'] = user_input               # Записываем по индексу в словарь
-        print("Вы ввели целое число: {}".format(user_input))
+        print(f"Вы ввели целое число: {user_input}")
     else:
         try:
             # Функция float() пытается преобразовать значение в число с точкой.
@@ -34,18 +34,18 @@ def status_input_function():    # Проверка введенного знач
             float(user_input)
             status_input = 1
             user_value['var_number'] = user_input
-            print("Вы ввели число с точкой: {}".format(user_input))
+            print(f"Вы ввели число с точкой: {user_input}")
         except ValueError:                                  # Если введен текст
             status_input = 2
             user_value['var_text'] = user_input
-            print("Вы ввели следующий текст: {}".format(user_input))
+            print(f"Вы ввели следующий текст: {user_input}")
     return status_input                                     # return Возвращает статус проверки: 0, 1, 2
 
 
-def sec_to_time():                              # Перевод секунд во время и представление в нужном формате
+def sec_to_time(text):                              # Перевод секунд во время и представление в нужном формате
     sec_count = {'for_min': 60, 'for_hour': 3600, 'for_day': 86400}
     # Собственно расчет времени арифметически, после подтверждения типа int
-    if status_input_function() == 0:
+    if status_input_function(text) == 0:
         sec = int(user_value['var_number'])
         time_view = ['{}', '{}', '{}']          # Список для формирование маски ввода значений
         s = sec % sec_count['for_min']
@@ -58,20 +58,20 @@ def sec_to_time():                              # Перевод секунд в
         time_view = ':'.join(time_view)     # сформировал единую строку из списка
         print(time_view.format(h, m, s))
     else:
-        sec_to_time()
+        sec_to_time('Введите секунды')
 
 
-def n_function():                   # Сложение текста и цифр
-    if status_input_function() == 0:
+def n_function(text):                   # Сложение текста и цифр
+    if status_input_function(text) == 0:
         n = user_value['var_number']
         n = int(n * 2) + int(n * 3) + int(n)
         print('Получется число: ', n)
     else:
-        n_function()
+        n_function(text)
 
 
-def max_number():                   # Выбор наибольшего числа
-    if status_input_function() == 0:
+def max_number(text):                   # Выбор наибольшего числа
+    if status_input_function(text) == 0:
         n = user_value['var_number']
         n = list(n)                 # Превратили в список
         count = 0
@@ -85,40 +85,37 @@ def max_number():                   # Выбор наибольшего числ
                 count += 1
         print('Наибольшая цифра: ', numbers)
     else:
-        max_number()
+        max_number(text)
 
 
-def my_firm():                          # Прибыль и убытки
-    print('Введите значение выручки')
-    if status_input_function() == 0:
+def my_firm(text):                          # Прибыль и убытки
+    print(text)
+    input_message = ['Введите значение выручки: ', 'Введите значение издержек: ', 'Сколько у Вас сотрудников?: ']
+    if status_input_function(input_message[0]) == 0:
         revenue = int(user_value['var_number'])
-        print('Введите значение издержек')
-        if status_input_function() == 0:
+        if status_input_function(input_message[1]) == 0:
             costs = int(user_value['var_number'])
             if revenue > costs:
                 print('Вы в прибыли! Вы заработали: ', revenue-costs)
-                print('Сколько у Вас сотрудников?')
-                status_input_function()
+                status_input_function(input_message[2])
                 people = int(user_value['var_number'])
                 print('Рентабельность на одного человека персонала составляет: {:.2f}'.format((revenue-costs) / people))
-                print('')
             elif revenue == costs:
-                print('Нулевая рентабельность. Может поменять сферу?')
-                print('')
+                print('Нулевая рентабельность. Может поменять сферу?', end='\n')
             else:
                 print('Вы в убытках. Вы потеряли: ', revenue-costs)
         else:
-            my_firm()
+            my_firm(text)
     else:
-        my_firm()
+        my_firm(text)
 
 
-def runner():                                       # Бегун
-    print('Сколько бегун пробегает каждый день?')
-    if status_input_function() == 0:
+def runner(text):               # Бегун
+    print(text)
+    input_message = ['Сколько бегун пробегает каждый день?: ', 'Сколько должен пробежать?: ']
+    if status_input_function(input_message[0]) == 0:
         a = int(user_value['var_number'])
-        print('Сколько должен пробежать?')
-        if status_input_function() == 0:
+        if status_input_function(input_message[1]) == 0:
             b = int(user_value['var_number'])
             count_day = 0
             while a < b:
@@ -127,30 +124,26 @@ def runner():                                       # Бегун
                 print('{}-й день: {:.2f}'.format(count_day, a))
             print('Ответ: на {}-й день спортсмен достиг результата — не менее {:.2f} км'.format(count_day, b))
         else:
-            runner()
+            runner(text)
     else:
-        runner()
+        runner(text)
 
 
 def main():
-    print("Задание 1-е. Введите число для записи его в переменную user_value")
-    status_input_function()
-    print('')
-    print("Задание 2-е. Введите текст для записи его в переменную user_value")
-    status_input_function()
-    print('')
-    print("Задание 3. Введите количество секунд, которое необходимо преобразовать в данные времени. Целое число")
-    sec_to_time()
-    print('')
-    print("Задание 4. Ввести большое целое число и получить цифру, наибольшую из введенных")
-    max_number()
-    print('')
-    print("Задание 5. Ввести значения прибыли и издержек, чтобы получить баланс")
-    my_firm()
-    print('')
-    print("Задание 6. Введите значения: сколько пробегает бегун каждый день? "
-          "Должен пробежать не менее скольки километров?")
-    runner()
+    input_message = ["Задание 1-е. Введите число для записи его в переменную user_value\n",
+                     "Задание 2-е. Введите текст для записи его в переменную user_value\n",
+                     "Задание 3. Введите количество секунд, которое необходимо преобразовать "
+                     "в данные времени. Целое число\n",
+                     "Задание 4. Ввести большое целое число и получить цифру, наибольшую из введенных\n",
+                     "Задание 5. Ввести значения прибыли и издержек, чтобы получить баланс\n",
+                     "Задание 6. Введите значения: сколько пробегает бегун каждый день? "
+                     "Должен пробежать не менее скольки километров?\n"]
+    status_input_function(input_message[0])
+    status_input_function(input_message[1])
+    sec_to_time(input_message[2])
+    max_number(input_message[3])
+    my_firm(input_message[4])
+    runner(input_message[5])
 
 
 if __name__ == '__main__':
