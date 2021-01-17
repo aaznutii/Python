@@ -17,8 +17,8 @@ class Window(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.line_edit = QLineEdit(task_text[0][0])
-        self.button_check = QPushButton(btn_text[0][0])
+        self.line_edit = QLineEdit(str(task_text[0]))
+        self.button_check = QPushButton(btn_text[0])
         self.button_check.clicked.connect(self.on_check)
 
         layout = QVBoxLayout()
