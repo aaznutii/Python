@@ -1,4 +1,5 @@
 # Без этой библиотеки никак не получается корректно распознать кортеж из файла
+
 import ast
 
 
@@ -26,10 +27,10 @@ def count_for_products():  # Счет количесва строк для по�
 
 def append_lists(values, files):  # Записать в конец файла
     try:
-        with open(files, 'a', encoding='utf-8') as file:
+        with open(files, 'a', encoding='utf-8') as file:  # Дозапись
             file.write(values + '\n')
     except FileExistsError:
-        with open(files, 'w', encoding='utf-8') as file:
+        with open(files, 'w', encoding='utf-8') as file:  # Перезапись, или создание нового
             file.write(values + '\n')
 
 
