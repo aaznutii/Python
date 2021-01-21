@@ -17,7 +17,7 @@ def input_value(values):
     return user_value
 
 
-def count_for_products():  # Счет количесва строк для получения индекса
+def count_for_products():  # Счет числа строк для получения индекса + 1
     count_name = 0
     with open('lists.txt', 'r') as file:
         for line in file:
@@ -36,24 +36,28 @@ def append_lists(values, files):  # Записать в конец файла
 
 def read_lists():  # Получение кортежей из файла для последующей работы
     lst = []
-    with open('lists.txt', 'r', encoding='utf-8') as file:
+    with open('lists.txt', 'r', encoding='utf-8') as file:  # безопасное чтение файла
         for line in file:
-            try:  # На случай, если есть пустая строка
+            try:  # Попытка, если преобразование нормльно происходит
                 ast_line = ast.literal_eval(line)
                 lst.append(ast_line)
-            except ValueError:
+            except ValueError:  # На случай, если есть пустая строка
                 continue
-    return lst
+    return lst  # Возвращаем заполненный список кортежей
 
 
 def create_analytics_dict():
     lst = read_lists()
     analytics = {'name': [], 'price': [], 'count': [], 'units': []}
     dict_to_list = []
-    for tup in lst:  # кортеж
-        for key, val in tup[1].items():  # пара ключ: значение - кортежи!
+    for tup in lst:  # кортежи. начинаем перебор строк по вертикали
+        for key, val in tup[1].items():  # Берем горизонталь по индексу. пара ключ: значение - кортежи!
             # Условие по ключам для добавления. Никак не получается прикрутить сюда условие на значения
             if key in analytics.keys():
-                analytics[key].append(val)
-    dict_to_list.append(analytics)
+                analytics[key].append(val)  # заполняем по нужной форме словарь (пока со всеми значениями)
+
+    for key, val in analytics.items():  # Цикл для перебора и прогонки через множества всех значений
+        val = list(set(val))  # оставляем только уникальные значения
+        dicts = {key: val}
+        dict_to_list.append(dicts)  # получаем итоговую форму.
     append_lists(str(dict_to_list), 'for_analysis.txt')
