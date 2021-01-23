@@ -117,7 +117,7 @@ def upper_first_lit():
     Ввести строку, каждое слово с большой буквы.
     :return: String, String, String,..
     """
-    values = input('Введите строку').split(' ')
+    values = input('Введите строку\n').split(' ')
     for el in range(len(values)):
         values[el] = int_funk(values[el])
     print(values)
