@@ -1,19 +1,27 @@
 # Задание 1
-def division_num(num_1, num_2):
+def division_num(num_1, num_2):  # По условиям задания должны приниматься значения.
     """
     Деление
     :param num_1: 4
     :param num_2: 2
     :return: 2
     """
-    if num_2 != 0:
-        result = num_1 / num_2
-        print(f'Вы ввели следующие числа: {num_1}, {num_2}. В результате деления получилось:{result}')
-    else:
-        print('Вы ввели 0. Деление на ноль')
+    values = {'num_1': num_1, 'num_2': num_2, 'control': 0}
+    while values['control'] == 0:  # Ввел цикл с проверкой ввода
+        try:
+            result = int(values['num_1']) / int(values['num_2'])
+            print(f'Вы ввели следующие числа: {num_1}, {num_2}. В результате деления получилось:{result}')
+            values['control'] = 1
+        except ZeroDivisionError:
+            values['num_2'] = input('Вы ввели 0. Деление на ноль. Введите значение делителя заново\n')
+            continue
+        except ValueError:
+            values['num_1'] = input('Вы ошиблись со вводом. Введите делимое\n')
+            values['num_2'] = input('Введите делитель\n')
 
 
-division_num(256, 8)
+# Запуск Задание 1
+# division_num(input('Введите делимое\n'), input("Введите делитель\n"))
 
 
 # Задание 2
@@ -34,44 +42,62 @@ def user_data(name, family, birthday, city, e_mail, telefone):
           f'Телефон контакта: {telefone}')
 
 
-user_data("Вася", "Обломов", "25 января 1904", "Москва", "jblomov@rai.ru", "8927000000")
+# Запуск Задание 2
+# user_data("Вася", "Обломов", "25 января 1904", "Москва", "jblomov@rai.ru", "8927000000")
 
 
 # Задание 3
 def sum_max_numbers(num_1, num_2, num_3):
     """
-    Сумма двух максимальных чисел
+    Сумма двух максимальных чисел из трех
     :param num_1: 1
     :param num_2: 2
     :param num_3: 3
     :return: 5
     """
     num_list = [num_1, num_2, num_3]
-    sum_max = sum(num_list) - min(num_list)
+    sum_max = sum(num_list) - min(num_list)  # Чисел всего три. Достаточно суммировать и вычесть минимальное.
     return sum_max
 
 
-print(sum_max_numbers(1, 2, 3))
+# Запуск Задание 3
+# print(sum_max_numbers(9, 2, 1))
 
 
 # Задание 4
 def my_func(x, y):
+    # values = {'x': x, 'y': y}
     """
-
+    Возведене в отрицательную степень по формуле 1/(x**y). Два способа.
     :param x: 4
     :param y: -2
     :return:0.0625
     """
     task_solution_1 = x ** y
     print('Первое решение: ', task_solution_1)
-    task_solution_2 = x
-    for i in range(abs(y) - 1):
-        task_solution_2 = task_solution_2 * x
-    task_solution_2 = 1 / task_solution_2
-    print('Второе решение: ', task_solution_2)
+
+    def exponentiation(val_x, val_y):
+        """
+        Возведение в степень в цикле
+        :param val_x:
+        :param val_y:
+        :return:
+        """
+        result = val_x
+        for i in range(abs(val_y) - 1):
+            result = result * val_x
+        return result
+
+    if y < 0:
+        task_solution_2 = 1 / exponentiation(x, y)
+        print('Второе решение: ', task_solution_2)
+    else:
+        task_solution_2 = exponentiation(x, y)
+        print(f'Вы возводите не в отрицательную степень. Результат: {task_solution_2}')
 
 
-my_func(4, -2)
+# Запуск Задание 4
+# my_func(4, -2)
 
 
 # Задание 5
@@ -94,7 +120,8 @@ def sum_input_number():
         print('Сумма введенных чисел: {}'.format(var_dict['user_sum']))
 
 
-sum_input_number()
+# Запуск Задание 5
+# sum_input_number()
 
 
 # Задание 6
@@ -108,7 +135,8 @@ def int_funk(string):
     return result
 
 
-print(int_funk("string"))
+# Запуск Задание 6
+# print(int_funk("string"))
 
 
 # Задание 7
@@ -118,9 +146,9 @@ def upper_first_lit():
     :return: String, String, String,..
     """
     values = input('Введите строку\n').split(' ')
-    for el in range(len(values)):
+    for el in range(len(values) - 1):
         values[el] = int_funk(values[el])
-    print(values)
+    print(' '.join(values))
 
-
-upper_first_lit()
+# Запуск Задание 7
+# upper_first_lit()
