@@ -33,4 +33,4 @@ def choices_numbers():
     print('Итоговый список', final_list)
 
 
-choices_numbers()
+# choices_numbers()
