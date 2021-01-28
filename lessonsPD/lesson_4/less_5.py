@@ -9,8 +9,9 @@
 from functools import reduce
 
 new_list = [el for el in range(100, 1001) if el % 2 == 0]
+print(len(new_list))  # Для наглядности
 sum_list = reduce(lambda x, y: x + y, new_list)  # В соответствии с условиями задания
 sum_list_summa = sum(new_list)  # Короткий вариант
 print('Сгенерированный список: \n', new_list)
-print('Сумма значений: \n', sum_list)
-print('Сумма значений: \n', sum_list_summa)
+print('Сумма значений перый вариант: \n', sum_list)
+print('Сумма значений: второй вриант\n', sum_list_summa)
