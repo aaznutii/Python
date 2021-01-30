@@ -8,7 +8,7 @@
 def get_count_new():
     """
     Слили строки воедино, разделили по пробелам и отбросив лишниее знаки посчитали слова.
-    :return:
+
     """
     with open("for_less_1.txt", 'r', encoding='utf-8') as file:
         lines = file.readlines()
