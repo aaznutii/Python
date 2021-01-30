@@ -1,15 +1,20 @@
 """
 2.	Создать текстовый файл (не программно), сохранить в нём несколько строк, выполнить подсчёт строк и слов
 в каждой строке.
+Не страшно,ведь,  что я ипользую уже имеющийся файл txt
 """
 
 
-def get_count():  # Задача выполнена, но строка генератора получилась слишком сложная
+def get_count_new():
+    """
+    Слили строки воедино, разделили по пробелам и отбросив лишниее знаки посчитали слова.
+    :return:
+    """
     with open("for_less_1.txt", 'r', encoding='utf-8') as file:
         lines = file.readlines()
-        words = [len(word.split(' ')) for word in [el.strip('\n') for el in lines if el.strip('\n') != '']]
+    words = [el.strip('\n').strip('.') for el in ' '.join(lines).split(' ') if el.strip('\n') != '']
     print(f'Всего строк в файле: {len(lines)}')
-    print(f'Всего слов в файле: {sum(words)}')
+    print(f'Всего слов в файле: {len(words)}')
 
 
-get_count()
+get_count_new()
