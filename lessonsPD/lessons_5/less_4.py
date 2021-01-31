@@ -10,12 +10,12 @@ Four — 4
 """
 
 
-def get_file(file_name, mode, values=None):  # Хорошая функция для открытия файла. универсальненько
+def open_file(file_name, mode, values=None):  # Хорошая функция для открытия файла. универсальненько
     """
     Открывет файл для записи/создания или чтения в зависимости от наличия значений для записи
-    :param file_name:
-    :param mode:
-    :param values:
+    :param file_name: 'for_less_4.txt'
+    :param mode: 'r'
+    :param values: 'values'
     """
     with open(file_name, mode, encoding='utf-8') as file:
         if values is None:
@@ -27,10 +27,10 @@ def get_file(file_name, mode, values=None):  # Хорошая функция д�
 
 def get_numbers():
     """
-    Создание словаря с исходными значениями
+    Создание словаря с исходными данными
     :return: {1: 'One ', 2: 'Two ', 3: 'Three ', 4: 'Four '}
     """
-    lines = get_file('for_less_4.txt', 'r')
+    lines = open_file('for_less_4.txt', 'r')
     numbers = {}
     for line in lines:
         try:
@@ -49,8 +49,8 @@ def rewrite_numbers():
     for key, name in numbers.items():
         if key in rus_names.keys():
             numbers[key] = rus_names[key]
-    for key, name in numbers.items():
-        get_file(file_name, 'a', f'{name} - {key}\n')
+        # for key, name in numbers.items():
+        open_file(file_name, 'a', f'{numbers[key]} - {key}\n')
     print(f'Получены данные: {numbers}')
     print(f'Данные сохранены по форме в файл {file_name}')
 
