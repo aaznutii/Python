@@ -28,7 +28,7 @@ def get_dict():
             disciplines.update({name: subjects})
         except ValueError:
             continue
-    print(disciplines)
+    print(f'Получены следующие данные по предметам: \n{disciplines}')
 
 
 get_dict()

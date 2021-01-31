@@ -49,7 +49,6 @@ def rewrite_numbers():
     for key, name in numbers.items():
         if key in rus_names.keys():
             numbers[key] = rus_names[key]
-        # for key, name in numbers.items():
         open_file(file_name, 'a', f'{numbers[key]} - {key}\n')
     print(f'Получены данные: {numbers}')
     print(f'Данные сохранены по форме в файл {file_name}')
