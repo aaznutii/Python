@@ -8,6 +8,10 @@
                                         Физкультура:   —   30(пр)   —
 Пример словаря: {“Информатика”: 170, “Физика”: 40, “Физкультура”: 30}
 """
+import re
+
+
+# Использовал регулярное выражение
 
 
 def get_dict():
@@ -20,17 +24,13 @@ def get_dict():
     disciplines = {}
     for line in lines:
         try:
-            name, subjects_numbers = line.strip('\n').split(':')
-            subjects_numbers = [list(subjects) for subjects in subjects_numbers.split(' ') if subjects != '']
-
+            name, subjects = line.strip('\n').split(':')
+            subjects = re.findall(r'\d+', subjects)
+            subjects = sum(int(el) for el in subjects)
+            disciplines.update({name: subjects})
         except ValueError:
             continue
-        print(subjects_numbers)
-    # for subjects in disciplines.values():
-    #     print(subjects)
-    #     # hours = [list(el) for el in subjects]
-    #     # print(hours)
-    # print(disciplines)
+    print(disciplines)
 
 
 get_dict()
