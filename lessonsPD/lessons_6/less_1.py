@@ -14,26 +14,41 @@
 import time
 
 
-# import itertools
+# Первый вариант. Здесь, судя по всему, класс подобен классической фнкции.
+# class TrafficLight:
+#     # Атрибут класса
+#     _color = {'Красный': 7, 'Жёлтый': 2, 'Зеленый': 7}
+#
+#     # Метод класса
+#     def running(self):
+#         count = 0
+#         while count < 6:
+#             for name, sec in TrafficLight._color.items():
+#                 print(f'Светит: {name}; время: {sec}')
+#                 time.sleep(sec)
+#                 count += 1
+#                 print(count)
 
 
+# Третий вариант.
 class TrafficLight:
-    # Атрибуты класса
-    _color = {'Красный': 7, 'Жёлтый': 2, 'Зеленый': 7}
+    # Атрибут класса
+    _color = ['Красный', 'Жёлтый', 'Зеленый']
 
     def running(self):
-        """ Может быть вызван метод в цикле и тогда он будет бесконено повторять одну и ту же последовательность"""
-        count = 1
-        while count < 2:
-            # for name, sec in itertools.cycle(TrafficLight._color.items()):
-            #     print(f'Светит: {name}; время: {sec} секунд')
-            #     time.sleep(sec)
-            for name, sec in TrafficLight._color.items():
-                print(f'Светит: {name}; время: {sec}')
-                time.sleep(sec)
-                count += 1
-                print(count)
+        for i in range(len(TrafficLight._color)):
+            print(TrafficLight._color[i])
+            time.sleep(int(self.seconds[i]))
+
+    def __init__(self, color_index=0, seconds=7):
+        self.color_index = color_index
+        print('Введите через пробел время для каждого режима (Красный, жёлтый, зеленый) '
+              'или оставьте время по умолчанию: 5 ')
+        user_values = input().split()
+        print(user_values)
+        print(type(user_values))
+        self.seconds = (user_values, [7, 2, 5])['' in user_values]
+        self.running()
 
 
-test = TrafficLight()
-test.running()
+test = TrafficLight(0, 3)
