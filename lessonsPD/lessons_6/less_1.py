@@ -12,6 +12,7 @@
 сообщение и завершать скрипт.
 """
 import time
+from itertools import cycle
 
 
 # Первый вариант. Здесь, судя по всему, класс подобен классической фнкции.
@@ -31,24 +32,46 @@ import time
 
 
 # Третий вариант.
+# class TrafficLight:
+#     # Атрибут класса
+#     _color = ('Красный', 'Жёлтый', 'Зеленый')
+#
+#     # Метод класса
+#     def running(self):
+#         for i in range(len(TrafficLight._color)):
+#             print(TrafficLight._color[i])
+#             time.sleep(int(self.seconds[i]))
+#
+#     def __init__(self):
+#         print('Введите через пробел время для каждого режима (Красный, жёлтый, зеленый) '
+#               'или оставьте время по умолчанию и введите Enter')
+#         user_values = input().split()
+#         self.seconds = (user_values, [7, 2, 5])[user_values == []]
+#         self.running()
+
+# test = TrafficLight()
+# test.running()
+
+
 class TrafficLight:
     # Атрибут класса
-    _color = ['Красный', 'Жёлтый', 'Зеленый']
+    _color = ''
 
-    def running(self):
-        for i in range(len(TrafficLight._color)):
-            print(TrafficLight._color[i])
-            time.sleep(int(self.seconds[i]))
-
-    def __init__(self, color_index=0, seconds=7):
-        self.color_index = color_index
-        print('Введите через пробел время для каждого режима (Красный, жёлтый, зеленый) '
-              'или оставьте время по умолчанию: 5 ')
-        user_values = input().split()
-        print(user_values)
-        print(type(user_values))
-        self.seconds = (user_values, [7, 2, 5])['' in user_values]
-        self.running()
+    # Метод класса
+    def running(self, color):
+        colors = ('Красный', 'Жёлтый', 'Зеленый')
+        seconds = [7, 2, 5]
+        print(color)
+        time.sleep(seconds)
 
 
-test = TrafficLight(0, 3)
+#
+#
+test = TrafficLight()
+test.running()
+test2 = TrafficLight()
+test2.running()
+test3 = TrafficLight()
+test3.running()
+test4 = TrafficLight()
+test4.running()
