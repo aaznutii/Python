@@ -12,66 +12,43 @@
 сообщение и завершать скрипт.
 """
 import time
-from itertools import cycle
-
-
-# Первый вариант. Здесь, судя по всему, класс подобен классической фнкции.
-# class TrafficLight:
-#     # Атрибут класса
-#     _color = {'Красный': 7, 'Жёлтый': 2, 'Зеленый': 7}
-#
-#     # Метод класса
-#     def running(self):
-#         count = 0
-#         while count < 6:
-#             for name, sec in TrafficLight._color.items():
-#                 print(f'Светит: {name}; время: {sec}')
-#                 time.sleep(sec)
-#                 count += 1
-#                 print(count)
-
-
-# Третий вариант.
-# class TrafficLight:
-#     # Атрибут класса
-#     _color = ('Красный', 'Жёлтый', 'Зеленый')
-#
-#     # Метод класса
-#     def running(self):
-#         for i in range(len(TrafficLight._color)):
-#             print(TrafficLight._color[i])
-#             time.sleep(int(self.seconds[i]))
-#
-#     def __init__(self):
-#         print('Введите через пробел время для каждого режима (Красный, жёлтый, зеленый) '
-#               'или оставьте время по умолчанию и введите Enter')
-#         user_values = input().split()
-#         self.seconds = (user_values, [7, 2, 5])[user_values == []]
-#         self.running()
-
-# test = TrafficLight()
-# test.running()
 
 
 class TrafficLight:
     # Атрибут класса
     _color = ''
+    _count = 0
 
     # Метод класса
-    def running(self, color):
-        colors = ('Красный', 'Жёлтый', 'Зеленый')
-        seconds = [7, 2, 5]
+    def running(self, color, seconds):
+        count = TrafficLight._count
         print(color)
         time.sleep(seconds)
+        if count < 2:
+            TrafficLight._count += 1
+        else:
+            TrafficLight._count = 0
+
+    def __init__(self, _color, user_seconds=None):
+        """
+        :param _color: Ввести индекс цвета:Красный: 0, Желтый: 1, Зеленый: 2
+        :param seconds: default = 7, 2, 5
+        """
+        def_colors = ('Красный', 'Жёлтый', 'Зеленый')
+        def_seconds = [7, 2, 5]
+        seconds = (user_seconds, def_seconds[self._count])[user_seconds is None]
+        if _color == self._count:
+            self.running(def_colors[_color], seconds)
+        else:
+            print('Нарушен порядок включения света')
 
 
-#
-#
-test = TrafficLight()
-test.running()
-test2 = TrafficLight()
-test2.running()
-test3 = TrafficLight()
-test3.running()
-test4 = TrafficLight()
-test4.running()
+test = TrafficLight(0, 3)
+test2 = TrafficLight(1, 2)
+test3 = TrafficLight(0, 2)
+test4 = TrafficLight(2, 5)
+test5 = TrafficLight(0, 7)
+test6 = TrafficLight(2, 5)
+test7 = TrafficLight(1, 2)
+test8 = TrafficLight(2, 2)
+test9 = TrafficLight(0)
