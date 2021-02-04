@@ -31,12 +31,12 @@ class Position(Worker):
         print(f'{result}')
 
     def __init__(self, name, surname, position, income_wage, income_bonus):
-        Worker.name = name
-        Worker.surname = surname
-        Worker.position = position
+        self.name = name
+        self.surname = surname
+        self.position = position
         Worker._income = {"wage": income_wage, "bonus": income_bonus}
         self.get_full_name()
         self.get_total_income()
 
 
-test_p = Position('Василий', 'Пупкин', 'meneg', 20000, 5000)
+test_p = Position('Василий', 'Пупкин', 'meneg', 23000, 5000)
