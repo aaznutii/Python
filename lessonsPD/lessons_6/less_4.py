@@ -45,12 +45,14 @@ class TownCar(Car):
 
 
 class SportCar(Car):
-
+    super().is_police = False
 
 class WorkCar(Car):
+    super().is_police = False
     def show_speed(self):
         if self.speed > 40:
             print('Превышение скорости')
 
 
 class PoliceCar(Car):
+    super().is_police = True
