@@ -10,3 +10,47 @@ turn(direction), которые должны сообщать, что машин
 Создайте экземпляры классов, передайте значения атрибутов. Выполните доступ к атрибутам, выведите результат.
 Вызовите методы и покажите результат.
 """
+
+
+class Car:
+    speed = 0
+    color = ''
+    name = ''
+    is_police = bool
+
+    def go(self):
+        if self.speed > 0:
+            print('Автомобиль поехал')
+            self.show_speed()
+
+    def stop(self):
+        if self.speed == 0:
+            print('Автомобиль остановился')
+
+    def turn(self):
+        print('Автомобиль певернул налево')
+        print('Автомобиль певернул направо')
+        print('Автомобиль развернулся')
+
+    def show_speed(self):
+        print(f'Скорость автомобиля {self.speed}')
+
+
+class TownCar(Car):
+    super().is_police = False
+
+    def show_speed(self):
+        if self.speed > 60:
+            print('Превышение скорости')
+
+
+class SportCar(Car):
+
+
+class WorkCar(Car):
+    def show_speed(self):
+        if self.speed > 40:
+            print('Превышение скорости')
+
+
+class PoliceCar(Car):
