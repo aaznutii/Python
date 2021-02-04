@@ -8,29 +8,18 @@
 ●	проверить работу метода.
 Например: 20 м*5000 м*25 кг*5 см = 12500 т.
 """
-import itertools
-import time
-
-# class Road:
-#     __length = 0
-#     __width = 0
 
 
-count = 0
+class Road:
+    _length = 0
+    _width = 0
+
+    def get_mass(self, _length, _width):
+        # self._length = length
+        # self._width = width
+        result = (_length * _width * 25 * 5) / 1000
+        return result
 
 
-def running(sec):
-    color = ['a', 'b', 'c']
-    sec = [2, 1, 3]
-    for index, el in itertools.cycle(enumerate(color)):
-        print(el)
-        time.sleep(sec[index])
-        count += 1
-        yield el
-
-
-x = running(5)
-next(x)
-next(x)
-next(x)
-next(x)
+mass = Road().get_mass(20, 5000)
+print(mass)

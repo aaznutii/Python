@@ -16,7 +16,7 @@ import time
 
 class TrafficLight:
     # Атрибут класса
-    _color = ''
+    __color = ''
     _count = 0
 
     # Метод класса
@@ -29,7 +29,7 @@ class TrafficLight:
         else:
             TrafficLight._count = 0
 
-    def __init__(self, _color, user_seconds=None):
+    def __init__(self, __color, user_seconds=None):
         """
         :param _color: Ввести индекс цвета:Красный: 0, Желтый: 1, Зеленый: 2
         :param seconds: default = 7, 2, 5
@@ -37,8 +37,8 @@ class TrafficLight:
         def_colors = ('Красный', 'Жёлтый', 'Зеленый')
         def_seconds = [7, 2, 5]
         seconds = (user_seconds, def_seconds[self._count])[user_seconds is None]
-        if _color == self._count:
-            self.running(def_colors[_color], seconds)
+        if __color == self._count:
+            self.running(def_colors[__color], seconds)
         else:
             print('Нарушен порядок включения света')
 
