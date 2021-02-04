@@ -15,8 +15,6 @@ class Road:
     _width = 0
 
     def get_mass(self, _length, _width):
-        # self._length = length
-        # self._width = width
         result = (_length * _width * 25 * 5) / 1000
         return result
 
