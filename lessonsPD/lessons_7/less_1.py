@@ -14,3 +14,33 @@
 Подсказка: сложение элементов матриц выполнять поэлементно — первый элемент первой строки первой матрицы
 складываем с первым элементом первой строки второй матрицы и т.д.
 """
+
+
+class Matrix:
+    def __init__(self, lists):
+        self.lists = lists
+
+    def __str__(self):
+        strings = ''
+        for list_x in self.lists:
+            string = ''
+            for el in list_x:
+                string += f' {el} '
+            strings += string + '\n'
+        return strings
+
+    def __add__(self, other):
+        lists = Matrix(self.lists)
+        # result = []
+        # for i, li in enumerate(lists):
+        #     sum_elements = []
+        #     for i_el, el in enumerate(li):
+        #         sum_elements.append(el + other[i][i_el])
+        #     result.append(sum_elements)
+        # return result
+
+
+m = Matrix([[31, 22], [37, 43], [51, 86]])
+print(m)
+m1 = Matrix([[1, 1], [1, 1], [1, 1]])
+print((m + m1))
