@@ -17,8 +17,20 @@
 
 
 class Matrix:
+    lists = []
+
     def __init__(self, lists):
         self.lists = lists
+
+    def __add__(self, other):
+        result = []
+        for i in range(len(self.lists)):
+            sum_x = []
+            for i_el in range(len(self.lists[i])):
+                x = self.lists[i][i_el] + other.lists[i][i_el]
+                sum_x.append(x)
+            result.append(sum_x)
+        return Matrix(result)
 
     def __str__(self):
         strings = ''
@@ -29,18 +41,12 @@ class Matrix:
             strings += string + '\n'
         return strings
 
-    def __add__(self, other):
-        lists = Matrix(self.lists)
-        # result = []
-        # for i, li in enumerate(lists):
-        #     sum_elements = []
-        #     for i_el, el in enumerate(li):
-        #         sum_elements.append(el + other[i][i_el])
-        #     result.append(sum_elements)
-        # return result
-
 
 m = Matrix([[31, 22], [37, 43], [51, 86]])
 print(m)
 m1 = Matrix([[1, 1], [1, 1], [1, 1]])
-print((m + m1))
+print(m + m1)
+m2 = Matrix([[3, 5, 32], [2, 4, 6], [-1, 64, -8]])
+print(m2)
+m3 = Matrix([[3, 5, 8, 3], [8, 3, 7, 1], [-1, 64, -8, 100]])
+print(m3)
