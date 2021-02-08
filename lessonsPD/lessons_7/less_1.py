@@ -22,6 +22,7 @@ class Matrix:
     def __init__(self, lists):
         self.lists = lists
 
+    # Просто создаем цикл для обработки двух массивов по индексу, создаем экземпляр класса.
     def __add__(self, other):
         result = []
         for i in range(len(self.lists)):
