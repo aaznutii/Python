@@ -37,7 +37,8 @@ class Coat(Dress):
 
     def __add__(self, other):
         result = self.amount_of_fabric + other.amount_of_fabric
-        return f'Всего для создания {self.count} костюмов необходимо ткани: {result:.2f}'
+        return f'Всего для создания {self.count} пальто необходимо ткани: {result:.2f}\n' \
+               f'___________'
 
     def __str__(self):
         return f'Для создания пальто необходимо :{self.amount_of_fabric:.2f} метров ткани'
@@ -57,7 +58,8 @@ class Suit(Dress):
 
     def __add__(self, other):
         result = self.amount_of_fabric + other.amount_of_fabric
-        return f'Всего для создания {self.count} костюмов необходимо ткани: {result:.2f}'
+        return f'Всего для создания {self.count} костюмов необходимо ткани: {result:.2f}\n' \
+               f'___________'
 
     def __str__(self):
         return f'Для создания костюма необходимо :{self.amount_of_fabric:.2f} метров ткани'
