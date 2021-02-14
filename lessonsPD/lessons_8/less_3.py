@@ -9,3 +9,64 @@
 Класс-исключение должен не позволить пользователю ввести текст (не число) и отобразить соответствующее сообщение.
 При этом работа скрипта не должна завершаться.
 """
+
+
+# Вариант 1 - если исходить из того функционала, который сформулировн для предполагаемого класса в задании.
+# Вероятно я ошибаюсь, но такой функционал мало похож на задачи исключения
+class StatusValue(Exception):
+    status = True
+
+    def __init__(self, value):
+        self.value = value
+        self.get_status(value)
+
+    def get_status(self, value):
+        if value.isnumeric():
+            self.status = True
+        else:
+            try:
+                float(value)
+                self.status = True
+            except ValueError:
+                print(f"Введен текст: {value}. Данные не добавлены в список.")
+                self.status = False
+
+
+def get_numbers_list():
+    numbers_list = []
+    stop = 0
+    print('Введите цифры, разделенные пробелами для добавления в список.\n'
+          'Для выхода из программы нажмите "!" или введите пустое значение')
+    while stop == 0:
+        user_value = input().split(' ')
+        for el in user_value:
+            if el == '!' or el == '':
+                stop = 1
+                break
+            elif StatusValue(el).status is True:
+                numbers_list.append(el)
+    print(f'Итоговый список: {numbers_list}')
+
+
+get_numbers_list()
+
+
+# Вариант 2 - если исходить из назначения класса в задании. По образцу методички
+
+class OwnError(Exception):
+    def __init__(self, txt):
+        self.txt = txt
+
+
+inp_data = input("Введите положительное число: ")
+
+try:
+    inp_data = int(inp_data)
+    if inp_data < 0:
+        raise OwnError("Вы ввели отрицательное число!")
+except ValueError:
+    print("Вы ввели не число")
+except OwnError as err:
+    print(err)
+else:
+    print(f"Все хорошо. Ваше число: {inp_data}")
