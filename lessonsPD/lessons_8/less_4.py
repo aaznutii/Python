@@ -20,22 +20,38 @@ class OfficeEquipment(Warehouse):
 
 
 class Printer(OfficeEquipment):
-    def __init__(self, name, color, count, weight, size, cost, print_speed):
+    def __init__(self, name, color, count, weight, we, le, he, cost, print_speed):
         self.name = name
         self.color = color
         self.count = count
         self.weight = weight
-        self.size = size
+        self.size = [we, le, he]
         self.cost = cost
         self.print_speed = print_speed
 
 
 class Scaner(OfficeEquipment):
-    pass
+    def __init__(self, name, color, count, weight, we, le, he, cost, scan_speed):
+        self.name = name
+        self.color = color
+        self.count = count
+        self.weight = weight
+        self.size = [we, le, he]
+        self.cost = cost
+        self.print_speed = scan_speed
 
 
 class Copier(OfficeEquipment):
-    pass
+    def __init__(self, name, color, count, weight, we, le, he, cost, count_copy):
+        self.name = name
+        self.color = color
+        self.count = count
+        self.weight = weight
+        self.size = [we, le, he]
+        self.cost = cost
+        self.print_speed = count_copy
 
 
-p = Printer()
+p = Printer('hp', 'red', 1, 5, 15, 10, 20, 25000, 30)
+print(p.name)
+print(p.size)
