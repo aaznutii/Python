@@ -4,3 +4,9 @@
 Подсказка: постарайтесь по возможности реализовать в проекте «Склад оргтехники» максимум возможностей, изученных на
 уроках по ООП.
 """
+import requests
+
+# data = {'key1': 'value1'}
+resp = requests.get("https://github.com/aaznutii/Python/pulls")
+
+print(resp.text)

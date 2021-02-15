@@ -6,6 +6,7 @@
 """
 # Возможно не до конц понял задание. Пока сделал так.
 
+
 class Date:
 
     def __init__(self, date):
@@ -21,7 +22,7 @@ class Date:
             date_list = [int(el) for el in date.split('-')]
             return date_list
         except ValueError:
-            print('Ошибка. Введен текст.\n'
+            print('Ошибка.\n'
                   'Введите корректно дату в формате dd-mm-yyyy')
             return False
 
