@@ -30,7 +30,7 @@ class Warehouse:
 
         result_list = input_values_list(attributes)
 
-        def get_instance_val(result_list):
+        def get_valid_val(result_list):
             print('Производится контроль введенных значений')
             result_str = ''
             for k, val in enumerate(result_list):
@@ -39,7 +39,7 @@ class Warehouse:
                 elif less_6.StatusValue(val).status is True and k >= 2:
                     result_str += (f'{val}, ', f'{val}')[len(result_list) - 1 == k]
                 else:
-                    print(f'Вы допустили ошибку при введении данных: {val}'
+                    print(f'Вы допустили ошибку при введении данных: {val}. '
                           f'Данные не сохранены. Желаете продожить?')
                     result_str = None
                     if agree_user() == 1:
@@ -49,10 +49,14 @@ class Warehouse:
             print("Значения приняты")
             return result_str
 
-        values = get_instance_val(result_list)
+        values = get_valid_val(result_list)
 
-        def get_place(result_str):
-            if result_str is None:
+        def write_new_str(new_str):
+            with open('products.txt', 'a') as file:
+                file.write(str(new_str) + '\n')
+
+        def get_place():
+            if values is None:
                 return
             else:
                 for k, pl in enumerate(Warehouse.places):
@@ -60,13 +64,10 @@ class Warehouse:
                 user_choice = input('Выберите где будет размещаться продукт: ')
 
             new_instance = eval(f'{result}({values})')
-            res = (user_choice, new_instance.get_dict())
-            return res
+            res = (Warehouse.places[int(user_choice)], new_instance.get_dict())
+            write_new_str(res)
 
-        new_str = get_place(values)
-
-        # def write_new_str():
-        #     with open('products.txt', 'a') as file:
+        get_place()
 
 
 class OfficeEquipment:
