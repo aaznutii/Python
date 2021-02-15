@@ -6,18 +6,21 @@
 
 
 class ZeroExc(Exception):
-    def __init__(self, number1, number2):
-        self.get_status_division(number1, number2)
-
-    def get_status_division(self, number1, number2):
-        try:
-            result = number1 / number2
-            print(result)
-        except ZeroDivisionError:
-            print('Деление на ноль')
+    """Деление на ноль"""
+    pass
 
 
-z = ZeroExc(5, 0)
-z1 = ZeroExc(5, 1)
-z2 = ZeroExc(-2, 0)
-z3 = ZeroExc(5, 15)
+def get_status_division(number1, number2):
+    try:
+        if number2 == 0:
+            raise ZeroExc('Ошибка.Деление на ноль')
+        result = number1 / number2
+        print(result)
+    except ZeroExc as z:
+        print(z)
+
+
+number_list = [2, 0, 5, 9, -10, 0]
+
+for el in number_list:
+    get_status_division(10, el)
