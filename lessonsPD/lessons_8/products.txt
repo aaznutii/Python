@@ -1,0 +1,2 @@
+('2', {'name': 'fdf', 'color': 'ff', 'count': 1, 'weight': 1, 'size': [1, 1, 1], 'cost': 1, 'scan_speed': 1})
+('home', {'name': 'ff', 'color': 'blue', 'count': 1, 'weight': 2, 'size': [10, 20, 15], 'cost': 36000, 'print_speed': 30})
