@@ -4,11 +4,13 @@
 данных, можно использовать любую подходящую структуру, например словарь.
 """
 import less_6
+import pickle
 
 
 class Warehouse:
     places = ('warehouse', 'home', 'office')
     categories = ['Printer', 'Scanner', 'Copier']
+
 
     @staticmethod
     def add_products():
@@ -51,10 +53,6 @@ class Warehouse:
 
         values = get_valid_val(result_list)
 
-        def write_new_str(new_str):
-            with open('products.txt', 'a') as file:
-                file.write(str(new_str) + '\n')
-
         def get_place():
             if values is None:
                 return
@@ -64,8 +62,8 @@ class Warehouse:
                 user_choice = input('Выберите где будет размещаться продукт: ')
 
             new_instance = eval(f'{result}({values})')
-            res = (Warehouse.places[int(user_choice)], new_instance.get_dict())
-            write_new_str(res)
+            res = (Warehouse.places[int(user_choice)], new_instance.get_dict(), '\n')
+            get_file(res)
 
         get_place()
 
@@ -142,6 +140,18 @@ class Copier(OfficeEquipment):
         return result
 
 
+# Файл формата .pkl позволяет сохранять структуры python в исходном виде
+def get_file(new_strukture=None):
+    if new_strukture is not None:
+        with open('products.pkl', 'ab') as file:
+            pickle.dump(new_strukture, file)
+            print('Данные записаны')
+    else:
+        with open('products.pkl', 'rb') as file:
+            f = pickle.load(file)
+            return f
+
+
 def agree_user():
     """
     Проверка согласия пользоваеля на действия
@@ -157,7 +167,20 @@ def main():
     print('Приветствуем вас в программе "Склад"\n'
           'Желаете ввести новые данные?')
     if agree_user() == 1:
-        Warehouse.add_products()
+        print('Желаете загрузить данные из списка?')
+        if agree_user() == 1:
+            print('Напоминаем, структура данных должна соответствовать форме:\n'
+                  'name, color, count, weight, we, le, he, cost, count_copy')
+        else:
+            print("Выбран ручной ввод данных.")
+            Warehouse.add_products()
+    else:
+        print('Желаете посмотреть данные?')
+        if agree_user() == 1:
+            f = get_file()
+            print(f)
+        else:
+            print('Выход из программы')
 
 
 if __name__ == '__main__':
