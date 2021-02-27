@@ -28,3 +28,11 @@ print(list(filter(lambda x: len(x) > 3, names)))
 # мфп
 n = [1, 2, 3, 4]
 print(list(map(lambda x: x * x, n)))
+
+import os
+import sys
+
+name = sys.platform
+for i in range(1, 5):
+    new_dir = os.path.join(os.getcwd(), f'{name}_{i}')
+    os.mkdir(new_dir)
