@@ -62,7 +62,7 @@ class Warehouse:
                 user_choice = input('Выберите где будет размещаться продукт: ')
 
             new_instance = eval(f'{result}({values})')
-            res = (Warehouse.places[int(user_choice)], new_instance.get_dict(), '\n')
+            res = (Warehouse.places[int(user_choice)], new_instance.get_dict())
             get_file(res)
 
         get_place()
@@ -147,9 +147,15 @@ def get_file(new_strukture=None):
             pickle.dump(new_strukture, file)
             print('Данные записаны')
     else:
-        with open('products.pkl', 'rb') as file:
-            f = pickle.load(file)
-            return f
+        with open('products.pkl', 'rb') as file:  # ВАЖНО: загрузка считывает один объект за раз. Следоательно: цикл
+            result = []
+            while True:
+                try:
+                    f = pickle.load(file)
+                    result.append(f)
+                except EOFError:
+                    break
+            return result
 
 
 def agree_user():
@@ -178,7 +184,8 @@ def main():
         print('Желаете посмотреть данные?')
         if agree_user() == 1:
             f = get_file()
-            print(f)
+            for el in f:
+                print(el)
         else:
             print('Выход из программы')
 
