@@ -3,17 +3,17 @@ import shutil
 import datetime
 
 
-def create_file(name, data=None):
-    with open(name, "w", encoding="utf-8") as fl:
-        if data:
-            fl.write(data)
-
-
 def create_folder(name):
     try:
         os.mkdir(name)
     except FileExistsError:
         print("Folder already exists!")
+
+
+def create_file(name, data=None):
+    with open(name, "w", encoding="utf-8") as fl:
+        if data:
+            fl.write(data)
 
 
 def get_list(folders=False):

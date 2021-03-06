@@ -1,0 +1,34 @@
+@startuml
+        'https://plantuml.com/object-diagram
+
+        object London
+        object Washington {
+        = ghjk
+        - jghf
+        + hgyf
+        / hdgs
+        ++hghg++
+        *-hgh-
+        }
+
+        object Berlin {
+        *Описание
+        *Молва
+        }
+        object NewYork {
+        **Жадный город**
+        }
+        object Moscow {
+        **beautifull sity**
+        ..hf..
+        }
+
+        map CapitalCity {
+        UK *-> London
+        USA *--> Washington
+        Germany *--> Berlin
+        Russia *--> Moscow
+        }
+
+        NewYork --> CapitalCity::USA
+        @enduml

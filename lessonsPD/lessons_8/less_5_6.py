@@ -3,14 +3,14 @@
 определенное подразделение компании. Для хранения данных о наименовании и количестве единиц оргтехники, а также других
 данных, можно использовать любую подходящую структуру, например словарь.
 """
-import less_6
 import pickle
+
+import less_6
 
 
 class Warehouse:
     places = ('warehouse', 'home', 'office')
     categories = ['Printer', 'Scanner', 'Copier']
-
 
     @staticmethod
     def add_products():

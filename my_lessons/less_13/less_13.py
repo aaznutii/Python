@@ -25,9 +25,8 @@ result = [1, -3, 2]
 которая поднимается внутри функции.
 """
 
-import random
-import copy
 import math
+import random
 
 rand_list = [random.randint(-50, 50) for i in range(20)]
 print(rand_list)
